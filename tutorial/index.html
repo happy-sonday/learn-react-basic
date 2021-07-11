@@ -9,12 +9,13 @@
       crossorigin
       src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
     ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <title>리액트 튜토리얼</title>
   </head>
   <body>
     <div id="root"></div>
-    <script>
-      const e = React.createElement;
+    <script type="text/babel">
+      //const e = React.createElement;
       class LikeButton extends React.Component {
         constructor(props) {
           super(props);
@@ -23,23 +24,45 @@
           };
         }
 
+        // render() {
+        //   return e(
+        //     "button",
+        //     {
+        //       onClick: () => {
+        //         console.log("clicked");
+        //         this.setState({ liked: !this.state.liked });
+        //       },
+        //       type: "submit",
+        //     },
+        //     this.state.liked === true ? "눌러주세요" : "좋아요"
+        //   ); //<button>Like</button>
+        // }
+
         render() {
-          return e(
-            "button",
-            {
-              onClick: () => {
-                console.log("clicked");
+          // NOTE: JSX JX+XML 엄격한 문법과 함께 JS를 확장한 문법
+          return (
+            <button
+              type="submit"
+              onClick={() => {
                 this.setState({ liked: !this.state.liked });
-              },
-              type: "submit",
-            },
-            this.state.liked === true ? "눌러주세요" : "좋아요"
-          ); //<button>Like</button>
+              }}
+            >
+              {this.state.liked === true ? "눌러주세요" : "좋아요"}
+            </button>
+          );
         }
       }
     </script>
-    <script>
-      ReactDOM.render(e(LikeButton), document.querySelector("#root"));
+    <script type="text/babel">
+      //   ReactDOM.render(e(LikeButton), document.querySelector("#root"));
+      ReactDOM.render(
+        <div>
+          <LikeButton />
+          <LikeButton />
+          <LikeButton />
+        </div>,
+        document.querySelector("#root")
+      );
     </script>
   </body>
 </html>
