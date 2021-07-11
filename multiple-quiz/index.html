@@ -60,7 +60,7 @@
         render() {
           // NOTE: JSX JX+XML 엄격한 문법과 함께 JS를 확장한 문법
           return (
-            <div>
+            <React.Fragment>
               <div>
                 {this.state.first} 곱하기 {this.state.second}는?
               </div>
@@ -100,7 +100,7 @@
                 <button>입력</button>
                 <div>{this.state.result}</div>
               </form>
-            </div>
+            </React.Fragment>
           );
         }
       }
