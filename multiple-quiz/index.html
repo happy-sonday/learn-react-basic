@@ -37,11 +37,20 @@
             parseInt(this.state.value) ===
             this.state.first * this.state.second
           ) {
-            this.setState({
-              result: `${this.state.first} * ${this.state.second} = ${this.state.value} 정답!!`,
-              first: Math.ceil(Math.random() * 9),
-              second: Math.ceil(Math.random() * 9),
-              value: "",
+            // TODO:이전상태값과 비교가 어려움
+            // this.setState({
+            //   result: `${this.state.first} * ${this.state.second} = ${this.state.value} 정답!!`,
+            //   first: Math.ceil(Math.random() * 9),
+            //   second: Math.ceil(Math.random() * 9),
+            //   value: "",
+            // });
+            this.setState((preState) => {
+              return {
+                result: `${preState.first} * ${preState.second} = ${preState.value} 정답!!`,
+                first: Math.ceil(Math.random() * 9),
+                second: Math.ceil(Math.random() * 9),
+                value: "",
+              };
             });
           } else {
             this.setState({
