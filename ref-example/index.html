@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@16/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>구구단 퀴즈</title>
+
+    <style>
+      .success {
+        background-color: green;
+      }
+      .failure {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class Input extends React.Component {
+        state = {
+          password: "",
+          clicked: false,
+          validated: false,
+        };
+
+        handleChange = (e) => {
+          this.setState({
+            password: e.target.value,
+          });
+        };
+
+        handleButtonClick = () => {
+          this.setState({
+            clicked: true,
+            validated: this.state.password == "0000",
+          });
+        };
+
+        render() {
+          return (
+            <React.Fragment>
+              <input
+                type="password"
+                value={this.state.password}
+                onChange={this.handleChange}
+                className={
+                  this.state.clicked
+                    ? this.state.validated
+                      ? "success"
+                      : "failure"
+                    : ""
+                }
+              />
+              <button onClick={this.handleButtonClick}>검증하기</button>
+            </React.Fragment>
+          );
+        }
+      }
+    </script>
+    <script type="text/babel">
+      ReactDOM.render(<Input />, document.querySelector("#root"));
+    </script>
+  </body>
+</html>

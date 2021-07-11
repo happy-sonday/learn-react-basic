@@ -52,6 +52,7 @@
                 value: "",
               };
             });
+            this.input.focus();
           } else {
             this.setState({
               result: "때엥",
@@ -59,6 +60,7 @@
               //   second: Math.ceil(Math.random() * 9),
               value: "",
             });
+            this.input.focus();
           }
         };
 
@@ -66,44 +68,26 @@
           this.setState({ value: e.target.value });
         };
 
+        input;
+
+        onRefInput = (c) => {
+          this.input = c;
+        };
+
         render() {
+          document.querySelector();
           // NOTE: JSX JX+XML 엄격한 문법과 함께 JS를 확장한 문법
           return (
             <React.Fragment>
               <div>
                 {this.state.first} 곱하기 {this.state.second}는?
               </div>
-              <form
-                // onSubmit={(e) => {
-                //   e.preventDefault();
-                //   if (
-                //     parseInt(value) ===
-                //     this.state.first * this.state.second
-                //   ) {
-                //     this.setState({
-                //       result: "정답",
-                //       first: Math.ceil(Math.random() * 9),
-                //       second: Math.ceil(Math.random() * 9),
-                //       value: "",
-                //     });
-                //   } else {
-                //     this.setState({
-                //       result: "때엥",
-                //       //   first: Math.ceil(Math.random() * 9),
-                //       //   second: Math.ceil(Math.random() * 9),
-                //       value: "",
-                //     });
-                //   }
-                // }}
-                onSubmit={this.onSubmit}
-              >
+              <form onSubmit={this.onSubmit}>
                 <input
                   type="number"
                   value={this.state.value}
-                  //   onChange={(e) => {
-                  //     this.setState({ value: e.target.value });
-                  //   }}
                   onChange={this.onChange}
+                  ref={this.onRefInput}
                 />
 
                 <button>입력</button>
