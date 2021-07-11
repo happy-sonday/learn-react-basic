@@ -42,6 +42,11 @@
             clicked: true,
             validated: this.state.password == "0000",
           });
+
+          //ref를 콜백하여 document.query~()로 접근하여 확인 가능
+          console.log(this.input);
+          //DOM태그에 접근하여 내장함수를 이용해 버튼 클릭 후 focus
+          this.input.focus();
         };
 
         render() {
@@ -51,6 +56,7 @@
                 type="password"
                 value={this.state.password}
                 onChange={this.handleChange}
+                ref={(ref) => (this.input = ref)}
                 className={
                   this.state.clicked
                     ? this.state.validated
