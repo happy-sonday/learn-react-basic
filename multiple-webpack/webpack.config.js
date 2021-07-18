@@ -15,8 +15,18 @@ module.exports = {
         test: /\.jsx?/,
         loader: "babel-loader",
         options: {
-          presets: ["@babel/preset-env", "@babel/preset-react"],
-          plugins: [],
+          presets: [
+            [
+              "@babel/preset-env",
+              {
+                targets: {
+                  browsers: ["> 5% in KR", "last 2 chrome version"],
+                },
+                debug: true,
+              },
+            ],
+            "@babel/preset-react",
+          ],
         },
       },
     ],
