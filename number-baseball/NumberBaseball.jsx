@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Try from './Try';
 
 
@@ -15,47 +15,41 @@ function getRandomNumber(){
 
 
 
-class NumberBaseball extends Component{
+const NumberBaseball = () => {
 
-    state={
-        result:'',
-        value:'',
-        answer:getRandomNumber(),
-        tries : [],
-    }
-             
+    const [result, setResult] = useState('');
+    const [value, setVale] = useState('');
+    const [answer, setAnswer] = useState(getRandomNumber());
+    const [tries, setTries] = useState([]);
 
- 
-
-
-    onSubmitForm=(e)=>{
-
-       
+    const onSubmitForm=(e)=>{     
 
         const {value, tries, answer} =this.state;
+        if(value === answer.join('')){
         e.preventDefault();
+        setResult('홈런!');
+        setTries((prevTries)=>{
+            return[prevTries, {try : value, result:'홈런!'}]
+        });
+        setVale('');
+        setAnswer(getRandomNumber());
+        setTries([]);
+    
         
-        if(value===answer.join('')){
-        this.setState({
-            result : '홈런!',
-            tries:[...tries, {try:value, result:'홈런!'}]
-        })
         }else{
             const answerArray = value.split('').map((v)=>parseInt(v));
             console.log('사용자 입력값',answerArray);
             let strike = 0;
             let ball = 0;
             if( tries.length >=9){
-                this.setState({
-                    result:`10번 넘게 틀려서 실패! 답은 ${answer.join(',')}였습니다.`
-                })
-                alert('게임을 다시 시작합니다');
-                this.setState({
-                    value:'',
-                    answer:getRandomNumber(),
-                    tries:[],
-                });
                 
+                setResult(`10번 넘게 틀려서 실패! 답은 ${answer.join(',')}였습니다.`);                
+                alert('게임을 다시 시작합니다');
+                setVale('');
+                setAnswer(getRandomNumber());
+                setTries([]);
+                    
+                                
             }else{
                 for(let i = 0; i<4; i+=1){
                     if(answerArray[i]===answer[i]){
@@ -64,26 +58,29 @@ class NumberBaseball extends Component{
                         ball+=1;
                     }
                 }
-                this.setState({
-                    tries:[...tries, { try: value, result:`${strike} 스트라이크, ${ball}볼 입니다`}],
-                })
+
+                setTries((prevTries)=>{
+                    [...prevTries, { try: value, result:`${strike} 스트라이크, ${ball}볼 입니다`}]
+                });
+                setVale('');
+           
             }
         };
     }
 
-    onChangeInput=(e)=>{        
-        this.setState({
-            value : e.target.value,
-        });
+    const onChangeInput=(e)=>{        
+
+        setVale(e.target.value);
     };
 
-    render(){
-        const { result, value, tries} =this.state;
+
+
+
         return (
             <>
                 <h1>{result}</h1>
-                <form onSubmit={this.onSubmitForm}>
-                    <input maxLength={4} value={value} onChange={this.onChangeInput} />
+                <form onSubmit={onSubmitForm}>
+                    <input maxLength={4} value={value} onChange={onChangeInput} />
                 </form>
                 <div>시도: {tries.length}</div>
                 <ul>
@@ -97,7 +94,7 @@ class NumberBaseball extends Component{
                 </ul>
             </>
         )
-    }
+   
 
     
 }
