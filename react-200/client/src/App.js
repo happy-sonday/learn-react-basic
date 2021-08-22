@@ -1,13 +1,15 @@
 /* import "./App.css"; */
 
 import "bootstrap/dist/css/bootstrap.css";
-import AxiousGet from "./awaitasync/AxiosGet";
-import AxiousPost from "./awaitasync/AxiosPost";
-import CallBackBasic from "./awaitasync/callBackBasic";
+import GrandParent from "./ContextApi/GrandParent";
 
-import FetchGet from "./awaitasync/FetchGet";
-import PromiseBasic from "./awaitasync/PromiseBasic";
-import Reject from "./awaitasync/Reject";
+import KeyboardEvnt from "./eventHandle/KeyboardEvnt";
+import MouseMoveEvnt from "./eventHandle/MouseEvnt";
+import RefBasic from "./eventHandle/RefBasic";
+import SubmitEvnt from "./eventHandle/SubmitEvnt";
+import CurringBasic from "./funcComponent/CurringBasic";
+import CurringBasic2 from "./funcComponent/CurringBasic2";
+import HOCBasic from "./funcComponent/HOCBasic";
 
 function App() {
   return (
@@ -28,7 +30,6 @@ function App() {
           <li className="item">아이템3</li>
         </ul>
       </NodeChildren> */}
-
       {/* <BasicState reactString={"state-learn-react"}></BasicState> */}
       {/* <R25_SetState /> */}
       {/*  <ClassComponent></ClassComponent> */}
@@ -41,14 +42,28 @@ function App() {
       {/* <ReactstrapAlerts /> */}
       {/* <StrapBadge /> */}
       {/* <R056SweetAlert2Basic /> */}
-
       {/*  <FetchGet /> */}
-
       {/* <AxiousPost /> */}
       {/* <AxiousGet /> */}
       {/* <CallBackBasic /> */}
       {/* <PromiseBasic /> */}
-      <Reject />
+      {/* <Reject /> */}
+      {/* NOTE:part3 */}
+      {/* <ClickEvnt /> */}
+      {/* <ChangEvnt /> */}
+      <MouseMoveEvnt />
+      <KeyboardEvnt />
+      <SubmitEvnt />
+      <h1>Ref Exam</h1>
+      <RefBasic />
+      <CurringBasic />
+      <CurringBasic2 />
+      <HOCBasic name="App to React200" />
+      <br />
+      <br />
+      Context API Basic
+      {/* <GrandParent /> */}
+      <GrandParent />
     </div>
   );
 }
