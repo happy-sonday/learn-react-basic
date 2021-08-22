@@ -6,16 +6,18 @@ import Header from "./routerComponent/Header/Header admin";
 
 import "./css/new.css";
 import LoginForm from "./routerComponent/LoginForm";
+import reactDebounce from "./lodash/reactDebounce";
+import ThrottleLoadash from "./lodash/throttle";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Header />
-        {/* NOTE:오타 주의 Router 태그명 쓸 경우 error 발생 */}
-        {/*  <Route exact path="/" component={ReactRouter} />
-        <Route exact path="/reactRouter2" component={ReactRouter2} /> */}
         <Route exact path="/" component={LoginForm} />
+        <Route exact path="/debounce" component={reactDebounce} />
+        <Route exact path="/throttle" component={ThrottleLoadash} />
+
         <Footer />
       </div>
     );
