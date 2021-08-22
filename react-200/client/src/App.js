@@ -1,35 +1,16 @@
-/* import "./App.css"; */
+import React from "react";
+import CookieSave from "./cookies/CookiesSave";
+import GetCookieInfo from "./cookies/GetCookieInfo";
+import RemoveCookieInfo from "./cookies/RemoveCookie";
 
-import "bootstrap/dist/css/bootstrap.css";
-import React, { Component } from "react";
-import { connect } from "react-redux";
-
-import StrAddButton from "./StrAddButton";
-
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Start React 200!</h1>
-        {/*  <span>{this.props.store.getState().data.str}</span> */}
-        <span>{this.props.str}</span>
-        <br />
-        {/*  <StrAddButton store={this.props.store} /> */}
-        <StrAddButton AppProp="200" />
-        <br />
-        버튼을 누르면 200 문자열 추가
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div>
+      <CookieSave />
+      <GetCookieInfo />
+      <RemoveCookieInfo />
+    </div>
+  );
 }
-
-let mapStateToProps = (state, props) => {
-  console.log(`Props from indes.js : ${props.indexProp}`);
-  return {
-    str: state.data.str,
-  };
-};
-
-App = connect(mapStateToProps, null)(App);
 
 export default App;
